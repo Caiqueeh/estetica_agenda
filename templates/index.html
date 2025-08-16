@@ -6,11 +6,23 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <h1>Agenda da Estética</h1>
-    <ul>
-        {% for dia in dias %}
-        <li><a href="{{ url_for('agenda', dia=dia) }}">{{ dia }}</a></li>
-        {% endfor %}
-    </ul>
+    <div class="container">
+        <h1>Agenda da Estética</h1>
+
+        <!-- Barra de busca de clientes -->
+        <form action="{{ url_for('buscar') }}" method="post" class="search-form">
+            <input type="text" name="nome" placeholder="Buscar cliente..." required>
+            <button type="submit">Buscar</button>
+        </form>
+
+        <!-- Cards dos dias -->
+        <div class="cards">
+            {% for dia in dias %}
+            <a href="{{ url_for('agenda', dia=dia) }}" class="card">
+                {{ dia }}
+            </a>
+            {% endfor %}
+        </div>
+    </div>
 </body>
 </html>
