@@ -9,23 +9,23 @@ body {
 
 /* Container central */
 .container {
-    width: 95%;
-    max-width: 500px; /* largura ideal para celular */
+    width: 98%;
+    max-width: 480px; /* largura ideal para celular */
     margin: 0 auto;
     text-align: center;
-    padding: 20px;
+    padding: 10px;
 }
 
 h1 {
     margin-bottom: 20px;
     color: #ff4d4d;
-    font-size: 24px;
+    font-size: 28px; /* maior para celular */
 }
 
-/* Cards dos dias - empilhados no celular */
+/* Cards dos dias - empilhados verticalmente e maiores */
 .cards {
     display: flex;
-    flex-direction: column; /* empilha verticalmente */
+    flex-direction: column;
     gap: 15px;
     margin-bottom: 20px;
 }
@@ -34,12 +34,12 @@ h1 {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 60px;
+    height: 80px;
     background-color: #1f1f1f;
     color: #fff;
     text-decoration: none;
     border-radius: 12px;
-    font-size: 18px;
+    font-size: 22px;
     font-weight: bold;
     transition: transform 0.2s, background-color 0.2s;
 }
@@ -49,21 +49,22 @@ h1 {
     transform: translateY(-3px);
 }
 
-/* Barra de busca e botão Voltar */
+/* Barra de busca e botão Voltar - vertical e largura total */
 .search-bar {
     display: flex;
-    flex-direction: column; /* vertical no celular */
-    gap: 10px;
+    flex-direction: column;
+    gap: 12px;
     margin-bottom: 20px;
+    width: 100%;
 }
 
 .search-bar input,
 .search-bar button {
-    padding: 12px;
+    padding: 16px;
     border-radius: 8px;
     border: none;
-    font-size: 18px;
-    width: 100%; /* ocupa a largura da tela */
+    font-size: 20px;
+    width: 100%;
 }
 
 .search-bar input {
@@ -83,20 +84,21 @@ h1 {
     background-color: #cc3a3a;
 }
 
-/* Tabelas */
+/* Tabelas scrollables */
 .table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
     display: block;
-    overflow-x: auto; /* scroll horizontal no celular */
+    overflow-x: auto; /* scroll horizontal */
 }
 
 .table th, .table td {
     border: 1px solid #444;
-    padding: 10px;
+    padding: 12px;
     text-align: center;
     white-space: nowrap;
+    font-size: 16px;
 }
 
 .table th {
@@ -113,26 +115,53 @@ h1 {
 
 /* Inputs dentro de forms de marcação */
 input[type="text"] {
-    padding: 10px;
+    padding: 14px;
     border-radius: 6px;
     border: 1px solid #555;
     background-color: #1a1a1a;
     color: #fff;
     width: 100%;
-    margin-bottom: 10px;
+    margin-bottom: 12px;
+    font-size: 18px;
 }
 
 /* Botões dentro das tabelas */
 table button {
-    padding: 10px;
+    padding: 12px;
     border-radius: 6px;
     border: none;
     background-color: #ff4d4d;
     color: #fff;
     cursor: pointer;
-    font-size: 16px;
+    font-size: 18px;
 }
 
 table button:hover {
     background-color: #cc3a3a;
+}
+
+/* Media query mínima para tablets (opcional) */
+@media (min-width: 600px) {
+    .cards {
+        flex-direction: row; /* volta a horizontal em telas maiores */
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .card {
+        width: 140px;
+        height: 80px;
+        font-size: 20px;
+    }
+
+    .search-bar {
+        flex-direction: row;
+        gap: 10px;
+    }
+
+    .search-bar input,
+    .search-bar button {
+        width: auto;
+        flex: 1;
+    }
 }
