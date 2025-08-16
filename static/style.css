@@ -164,4 +164,20 @@ table button:hover {
         width: auto;
         flex: 1;
     }
+
+.btn {
+    padding: 12px;
+    border-radius: 6px;
+    border: none;
+    background-color: #ff4d4d;
+    color: #fff;
+    cursor: pointer;
+    font-size: 18px;
+    transition: background-color 0.2s;
+}
+
+.btn:hover {
+    background-color: #cc3a3a;
+}
+
 }
