@@ -1,10 +1,33 @@
+import os
+import psycopg2
 from flask import Flask, render_template, request, redirect
-import sqlite3
 from datetime import datetime, timedelta
 
 app = Flask(__name__)
 
+# URL do PostgreSQL fornecida pelo Render
+DATABASE_URL = os.environ.get("DATABASE_URL")
+
 # ---------- Funções auxiliares ----------
+def get_connection():
+    conn = psycopg2.connect(DATABASE_URL, sslmode='require')
+    return conn
+
+def criar_tabela():
+    conn = get_connection()
+    cursor = conn.cursor()
+    cursor.execute("""
+        CREATE TABLE IF NOT EXISTS horarios (
+            id SERIAL PRIMARY KEY,
+            dia TEXT,
+            hora TEXT,
+            cliente TEXT
+        )
+    """)
+    conn.commit()
+    cursor.close()
+    conn.close()
+
 def criar_banco():
     conn = sqlite3.connect("agenda.db")
     cursor = conn.cursor()
@@ -21,47 +44,52 @@ def criar_banco():
 
 def criar_agenda_padrao():
     dias = ["Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado", "Domingo"]
-    conn = sqlite3.connect("agenda.db")
+    conn = get_connection()
     cursor = conn.cursor()
     for dia in dias:
-        hora = datetime.strptime("07:00", "%H:%M")
-        fim = datetime.strptime("21:00", "%H:%M")
+        hora = datetime.strptime("08:00", "%H:%M")
+        fim = datetime.strptime("18:00", "%H:%M")
         while hora <= fim:
             hora_str = hora.strftime("%H:%M")
-            cursor.execute("SELECT * FROM horarios WHERE dia=? AND hora=?", (dia, hora_str))
-            if cursor.fetchone() is None:  # só insere se não existir
-                cursor.execute("INSERT INTO horarios (dia, hora, cliente) VALUES (?, ?, ?)", (dia, hora_str, None))
+            cursor.execute("SELECT * FROM horarios WHERE dia=%s AND hora=%s", (dia, hora_str))
+            if cursor.fetchone() is None:
+                cursor.execute("INSERT INTO horarios (dia, hora, cliente) VALUES (%s, %s, %s)", (dia, hora_str, None))
             hora += timedelta(hours=1)
     conn.commit()
+    cursor.close()
     conn.close()
 
 def get_agenda(dia):
-    conn = sqlite3.connect("agenda.db")
+    conn = get_connection()
     cursor = conn.cursor()
-    cursor.execute("SELECT id, hora, cliente FROM horarios WHERE dia=? ORDER BY hora", (dia,))
+    cursor.execute("SELECT id, hora, cliente FROM horarios WHERE dia=%s ORDER BY hora", (dia,))
     horarios = cursor.fetchall()
+    cursor.close()
     conn.close()
     return horarios
 
 def marcar_horario(id_horario, cliente):
-    conn = sqlite3.connect("agenda.db")
+    conn = get_connection()
     cursor = conn.cursor()
-    cursor.execute("UPDATE horarios SET cliente=? WHERE id=?", (cliente, id_horario))
+    cursor.execute("UPDATE horarios SET cliente=%s WHERE id=%s", (cliente, id_horario))
     conn.commit()
+    cursor.close()
     conn.close()
 
 def cancelar_horario(id_horario):
-    conn = sqlite3.connect("agenda.db")
+    conn = get_connection()
     cursor = conn.cursor()
-    cursor.execute("UPDATE horarios SET cliente=NULL WHERE id=?", (id_horario,))
+    cursor.execute("UPDATE horarios SET cliente=NULL WHERE id=%s", (id_horario,))
     conn.commit()
+    cursor.close()
     conn.close()
 
 def buscar_cliente(nome):
-    conn = sqlite3.connect("agenda.db")
+    conn = get_connection()
     cursor = conn.cursor()
-    cursor.execute("SELECT dia, hora, cliente FROM horarios WHERE cliente LIKE ?", ('%' + nome + '%',))
+    cursor.execute("SELECT dia, hora, cliente FROM horarios WHERE cliente ILIKE %s", ('%' + nome + '%',))
     resultados = cursor.fetchall()
+    cursor.close()
     conn.close()
     return resultados
 
@@ -98,6 +126,6 @@ def cancelar(id_horario):
 
 # ---------- Inicialização ----------
 if __name__ == "__main__":
-    criar_banco()
+    criar_tabela()
     criar_agenda_padrao()
     app.run(host="0.0.0.0", port=5000)
