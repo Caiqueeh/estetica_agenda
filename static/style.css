@@ -128,6 +128,44 @@ input[type="text"] {
     font-size: 18px;
 }
 
+/* Página inicial - campo Buscar e botão alinhados */
+.index-search-bar {
+    display: flex;
+    flex-direction: column; /* vertical no celular */
+    gap: 15px;
+    margin-bottom: 25px;
+    width: 100%;
+}
+
+.index-search-bar input,
+.index-search-bar button {
+    padding: 16px;
+    border-radius: 8px;
+    border: none;
+    font-size: 20px;
+    width: 100%;
+    box-sizing: border-box; /* garante mesma altura */
+}
+
+.index-search-bar input {
+    background-color: #1a1a1a;
+    color: #fff;
+    border: 1px solid #555;
+}
+
+.index-search-bar button {
+    background-color: #ff4d4d;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.index-search-bar button:hover {
+    background-color: #cc3a3a;
+}
+
+
+
 /* Botões dentro das tabelas */
 table button {
     padding: 14px;
