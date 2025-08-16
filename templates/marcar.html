@@ -6,43 +6,38 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <h1>Agenda - {{ dia }}</h1>
+    <div class="container">
+        <h1>Agenda - {{ dia }}</h1>
 
-    <!-- Topo com Voltar à esquerda e filtro à direita -->
-    <div class="top-bar">
-        <a href="{{ url_for('index') }}"><button>Voltar</button></a>
+        <!-- Tabela de horários -->
+        <table class="table">
+            <tr>
+                <th>Hora</th>
+                <th>Cliente</th>
+                <th>Ações</th>
+            </tr>
+            {% for h in horarios %}
+            <tr>
+                <td>{{ h[1] }}</td>
+                <td>{{ h[2] if h[2] else 'Livre' }}</td>
+                <td>
+                    {% if not h[2] %}
+                    <form action="{{ url_for('marcar', id_horario=h[0]) }}" method="post" style="display:flex; gap:5px; justify-content:center;">
+                        <input type="text" name="cliente" placeholder="Nome do cliente" required>
+                        <button type="submit">Marcar</button>
+                    </form>
+                    {% else %}
+                    <a href="{{ url_for('cancelar', id_horario=h[0]) }}"><button>Cancelar</button></a>
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
 
-        <form method="get" class="filter-form">
-            <label>Filtrar:</label>
-            <select name="filtro" onchange="this.form.submit()">
-                <option value="todos" {% if filtro == 'todos' %}selected{% endif %}>Todos</option>
-                <option value="livres" {% if filtro == 'livres' %}selected{% endif %}>Livres</option>
-            </select>
-        </form>
+        <!-- Botão Voltar -->
+        <div style="margin-top:20px;">
+            <a href="{{ url_for('index') }}"><button>Voltar</button></a>
+        </div>
     </div>
-
-    <table class="table">
-        <tr>
-            <th>Hora</th>
-            <th>Cliente</th>
-            <th>Ações</th>
-        </tr>
-        {% for h in horarios %}
-        <tr>
-            <td>{{ h[1] }}</td>
-            <td>{{ h[2] if h[2] else 'Livre' }}</td>
-            <td>
-                {% if not h[2] %}
-                <form action="{{ url_for('marcar', id_horario=h[0]) }}" method="post">
-                    <input type="text" name="cliente" placeholder="Nome do cliente" required>
-                    <button type="submit">Marcar</button>
-                </form>
-                {% else %}
-                <a href="{{ url_for('cancelar', id_horario=h[0]) }}"><button>Cancelar</button></a>
-                {% endif %}
-            </td>
-        </tr>
-        {% endfor %}
-    </table>
 </body>
 </html>

@@ -6,35 +6,36 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <h1>Buscar Cliente</h1>
+    <div class="container">
+        <h1>Buscar Cliente</h1>
 
-    <!-- Barra de busca com botão Voltar depois -->
-    <div class="search-bar">
-        <form method="post" class="search-form">
-            <input type="text" name="nome" placeholder="Nome do cliente" required>
-            <button type="submit">Buscar</button>
-        </form>
+        <!-- Barra de busca com botão Voltar após Buscar -->
+        <div class="search-bar">
+            <form method="post" id="buscar-form">
+                <input type="text" name="nome" placeholder="Nome do cliente" required>
+                <button type="submit">Buscar</button>
+            </form>
+            <a href="{{ url_for('index') }}"><button>Voltar</button></a>
+        </div>
 
-        <a href="{{ url_for('index') }}"><button class="voltar-btn">Voltar</button></a>
+        {% if resultados %}
+        <table class="table">
+            <tr>
+                <th>Dia</th>
+                <th>Hora</th>
+                <th>Cliente</th>
+            </tr>
+            {% for r in resultados %}
+            <tr>
+                <td>{{ r[0] }}</td>
+                <td>{{ r[1] }}</td>
+                <td>{{ r[2] }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+        {% elif resultados is not none %}
+        <p>Nenhum resultado encontrado.</p>
+        {% endif %}
     </div>
-
-    {% if resultados %}
-    <table class="table">
-        <tr>
-            <th>Dia</th>
-            <th>Hora</th>
-            <th>Cliente</th>
-        </tr>
-        {% for r in resultados %}
-        <tr>
-            <td>{{ r[0] }}</td>
-            <td>{{ r[1] }}</td>
-            <td>{{ r[2] }}</td>
-        </tr>
-        {% endfor %}
-    </table>
-    {% elif resultados is not none %}
-    <p>Nenhum resultado encontrado.</p>
-    {% endif %}
 </body>
 </html>

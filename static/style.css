@@ -19,31 +19,39 @@ h1 {
     color: #ff4d4d;
 }
 
-/* Barra de busca */
-.search-form {
-    margin-bottom: 30px;
+/* Barra de busca e Voltar */
+.search-bar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
 }
 
-.search-form input[type="text"] {
-    padding: 10px;
-    width: 250px;
-    border-radius: 6px;
-    border: 1px solid #555;
-    background-color: #1a1a1a;
-    color: #fff;
-}
-
-.search-form button {
+.search-bar input[type="text"],
+.search-bar button {
     padding: 10px 16px;
     border-radius: 6px;
     border: none;
+    height: 42px;
+    font-size: 16px;
+}
+
+.search-bar input[type="text"] {
+    background-color: #1a1a1a;
+    color: #fff;
+    border: 1px solid #555;
+}
+
+.search-bar button {
     background-color: #ff4d4d;
     color: #fff;
     cursor: pointer;
     transition: background-color 0.2s;
 }
 
-.search-form button:hover {
+.search-bar button:hover {
     background-color: #cc3a3a;
 }
 
@@ -70,52 +78,13 @@ h1 {
     transition: transform 0.2s, background-color 0.2s;
 }
 
-.search-bar {
-    display: flex;
-    justify-content: center; /* centraliza horizontalmente */
-    align-items: center; /* alinha todos verticalmente na mesma linha */
-    gap: 10px;
-    margin-bottom: 20px;
-}
-
-.search-form {
-    display: flex; /* mantém campo e botão Buscar juntos */
-    align-items: center;
-    gap: 5px;
-}
-
-.search-form input[type="text"] {
-    padding: 10px;
-    border-radius: 6px;
-    border: 1px solid #555;
-    background-color: #1a1a1a;
-    color: #fff;
-}
-
-.search-form button,
-.voltar-btn {
-    padding: 10px 16px;
-    border-radius: 6px;
-    border: none;
-    background-color: #ff4d4d;
-    color: #fff;
-    cursor: pointer;
-    transition: background-color 0.2s;
-}
-
-.search-form button:hover,
-.voltar-btn:hover {
-    background-color: #cc3a3a;
-}
-
-
 .card:hover {
     background-color: #ff4d4d;
     color: #ffffff;
     transform: translateY(-5px);
 }
 
-/* Mantendo o estilo da tabela para outras páginas */
+/* Tabelas */
 .table {
     width: 100%;
     border-collapse: collapse;
@@ -141,31 +110,14 @@ h1 {
 }
 
 button {
-    background-color: #ff4d4d;
-    color: #ffffff;
     border: none;
-    padding: 8px 16px;
     border-radius: 6px;
+    padding: 8px 16px;
+    background-color: #ff4d4d;
+    color: #fff;
     cursor: pointer;
     transition: background-color 0.2s;
 }
-
-
-.top-bar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
-}
-
-.filter-form select {
-    padding: 6px;
-    border-radius: 4px;
-    border: 1px solid #555;
-    background-color: #1a1a1a;
-    color: #fff;
-}
-
 
 button:hover {
     background-color: #cc3a3a;
