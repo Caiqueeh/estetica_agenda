@@ -10,36 +10,36 @@ body {
 /* Container central */
 .container {
     width: 98%;
-    max-width: 480px; /* largura ideal para celular */
+    max-width: 500px; /* largura ideal para celular */
     margin: 0 auto;
     text-align: center;
     padding: 10px;
 }
 
 h1 {
-    margin-bottom: 20px;
+    margin-bottom: 25px;
     color: #ff4d4d;
-    font-size: 28px; /* maior para celular */
+    font-size: 32px; /* maior para celular */
 }
 
-/* Cards dos dias - empilhados verticalmente e maiores */
+/* Cards dos dias - empilhados verticalmente, maiores */
 .cards {
     display: flex;
     flex-direction: column;
-    gap: 15px;
-    margin-bottom: 20px;
+    gap: 18px;
+    margin-bottom: 25px;
 }
 
 .card {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 80px;
+    height: 100px; /* maior para toque */
     background-color: #1f1f1f;
     color: #fff;
     text-decoration: none;
-    border-radius: 12px;
-    font-size: 22px;
+    border-radius: 14px;
+    font-size: 24px;
     font-weight: bold;
     transition: transform 0.2s, background-color 0.2s;
 }
@@ -53,14 +53,15 @@ h1 {
 .search-bar {
     display: flex;
     flex-direction: column;
-    gap: 12px;
-    margin-bottom: 20px;
+    gap: 15px;
+    margin-bottom: 25px;
     width: 100%;
 }
 
 .search-bar input,
-.search-bar button {
-    padding: 16px;
+.search-bar button,
+.btn {
+    padding: 18px;
     border-radius: 8px;
     border: none;
     font-size: 20px;
@@ -73,14 +74,16 @@ h1 {
     border: 1px solid #555;
 }
 
-.search-bar button {
+.search-bar button,
+.btn {
     background-color: #ff4d4d;
     color: #fff;
     cursor: pointer;
     transition: background-color 0.2s;
 }
 
-.search-bar button:hover {
+.search-bar button:hover,
+.btn:hover {
     background-color: #cc3a3a;
 }
 
@@ -88,17 +91,17 @@ h1 {
 .table {
     width: 100%;
     border-collapse: collapse;
-    margin-top: 20px;
+    margin-top: 25px;
     display: block;
-    overflow-x: auto; /* scroll horizontal */
+    overflow-x: auto;
 }
 
 .table th, .table td {
     border: 1px solid #444;
-    padding: 12px;
+    padding: 14px;
     text-align: center;
     white-space: nowrap;
-    font-size: 16px;
+    font-size: 18px;
 }
 
 .table th {
@@ -115,20 +118,20 @@ h1 {
 
 /* Inputs dentro de forms de marcação */
 input[type="text"] {
-    padding: 14px;
-    border-radius: 6px;
+    padding: 16px;
+    border-radius: 8px;
     border: 1px solid #555;
     background-color: #1a1a1a;
     color: #fff;
     width: 100%;
-    margin-bottom: 12px;
+    margin-bottom: 14px;
     font-size: 18px;
 }
 
 /* Botões dentro das tabelas */
 table button {
-    padding: 12px;
-    border-radius: 6px;
+    padding: 14px;
+    border-radius: 8px;
     border: none;
     background-color: #ff4d4d;
     color: #fff;
@@ -140,10 +143,10 @@ table button:hover {
     background-color: #cc3a3a;
 }
 
-/* Media query mínima para tablets (opcional) */
+/* Media query mínima para tablets/desktops */
 @media (min-width: 600px) {
     .cards {
-        flex-direction: row; /* volta a horizontal em telas maiores */
+        flex-direction: row;
         flex-wrap: wrap;
         justify-content: center;
     }
@@ -164,20 +167,4 @@ table button:hover {
         width: auto;
         flex: 1;
     }
-
-.btn {
-    padding: 12px;
-    border-radius: 6px;
-    border: none;
-    background-color: #ff4d4d;
-    color: #fff;
-    cursor: pointer;
-    font-size: 18px;
-    transition: background-color 0.2s;
-}
-
-.btn:hover {
-    background-color: #cc3a3a;
-}
-
 }
