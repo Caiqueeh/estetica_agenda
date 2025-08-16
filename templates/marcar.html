@@ -7,14 +7,20 @@
 </head>
 <body>
     <h1>Agenda - {{ dia }}</h1>
-    <a href="{{ url_for('index') }}"><button>Voltar</button></a>
-    <form method="get">
-        <label>Filtrar:</label>
-        <select name="filtro" onchange="this.form.submit()">
-            <option value="todos" {% if filtro == 'todos' %}selected{% endif %}>Todos</option>
-            <option value="livres" {% if filtro == 'livres' %}selected{% endif %}>Livres</option>
-        </select>
-    </form>
+
+    <!-- Topo com Voltar à esquerda e filtro à direita -->
+    <div class="top-bar">
+        <a href="{{ url_for('index') }}"><button>Voltar</button></a>
+
+        <form method="get" class="filter-form">
+            <label>Filtrar:</label>
+            <select name="filtro" onchange="this.form.submit()">
+                <option value="todos" {% if filtro == 'todos' %}selected{% endif %}>Todos</option>
+                <option value="livres" {% if filtro == 'livres' %}selected{% endif %}>Livres</option>
+            </select>
+        </form>
+    </div>
+
     <table class="table">
         <tr>
             <th>Hora</th>

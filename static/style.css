@@ -111,6 +111,23 @@ button {
     transition: background-color 0.2s;
 }
 
+
+.top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.filter-form select {
+    padding: 6px;
+    border-radius: 4px;
+    border: 1px solid #555;
+    background-color: #1a1a1a;
+    color: #fff;
+}
+
+
 button:hover {
     background-color: #cc3a3a;
 }
