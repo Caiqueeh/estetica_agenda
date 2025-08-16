@@ -7,11 +7,15 @@
 </head>
 <body>
     <h1>Buscar Cliente</h1>
-    <a href="{{ url_for('index') }}">Voltar</a>
-    <form method="post">
+
+    <!-- Botão voltar estilizado como os outros botões -->
+    <a href="{{ url_for('index') }}"><button>Voltar</button></a>
+
+    <form method="post" class="search-form">
         <input type="text" name="nome" placeholder="Nome do cliente" required>
         <button type="submit">Buscar</button>
     </form>
+
     {% if resultados %}
     <table class="table">
         <tr>
