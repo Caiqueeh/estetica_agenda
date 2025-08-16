@@ -8,13 +8,15 @@
 <body>
     <h1>Buscar Cliente</h1>
 
-    <!-- Botão voltar estilizado como os outros botões -->
-    <a href="{{ url_for('index') }}"><button>Voltar</button></a>
+    <!-- Topo com Voltar e barra de busca alinhados -->
+    <div class="search-bar">
+        <a href="{{ url_for('index') }}"><button>Voltar</button></a>
 
-    <form method="post" class="search-form">
-        <input type="text" name="nome" placeholder="Nome do cliente" required>
-        <button type="submit">Buscar</button>
-    </form>
+        <form method="post" class="search-form">
+            <input type="text" name="nome" placeholder="Nome do cliente" required>
+            <button type="submit">Buscar</button>
+        </form>
+    </div>
 
     {% if resultados %}
     <table class="table">

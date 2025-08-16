@@ -70,6 +70,38 @@ h1 {
     transition: transform 0.2s, background-color 0.2s;
 }
 
+.search-bar {
+    display: flex;
+    justify-content: center; /* ou space-between se quiser Voltar à esquerda e busca à direita */
+    align-items: center;
+    gap: 10px; /* espaço entre Voltar e campo de busca */
+    margin-bottom: 20px;
+}
+
+.search-form input[type="text"] {
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid #555;
+    background-color: #1a1a1a;
+    color: #fff;
+}
+
+.search-form button {
+    padding: 10px 16px;
+    border-radius: 6px;
+    border: none;
+    background-color: #ff4d4d;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.search-form button:hover,
+.search-bar a button:hover {
+    background-color: #cc3a3a;
+}
+
+
 .card:hover {
     background-color: #ff4d4d;
     color: #ffffff;
