@@ -1,4 +1,4 @@
-/* Corpo e tema geral */
+/* Tema escuro e corpo */
 body {
     background-color: #121212;
     color: #ffffff;
@@ -7,73 +7,69 @@ body {
     padding: 0;
 }
 
+/* Container central */
 .container {
-    width: 90%;
-    max-width: 1000px;
+    width: 95%;
+    max-width: 500px; /* largura ideal para celular */
     margin: 0 auto;
     text-align: center;
     padding: 20px;
 }
 
 h1 {
-    margin-bottom: 30px;
+    margin-bottom: 20px;
     color: #ff4d4d;
+    font-size: 24px;
 }
 
-/* Cards dos dias */
+/* Cards dos dias - empilhados no celular */
 .cards {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
+    flex-direction: column; /* empilha verticalmente */
+    gap: 15px;
+    margin-bottom: 20px;
 }
 
 .card {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 140px;
-    height: 80px;
+    height: 60px;
     background-color: #1f1f1f;
     color: #fff;
     text-decoration: none;
     border-radius: 12px;
-    font-size: 20px;
+    font-size: 18px;
     font-weight: bold;
     transition: transform 0.2s, background-color 0.2s;
 }
 
 .card:hover {
     background-color: #ff4d4d;
-    color: #ffffff;
-    transform: translateY(-5px);
+    transform: translateY(-3px);
 }
 
-/* Barra de busca e botões */
+/* Barra de busca e botão Voltar */
 .search-bar {
     display: flex;
-    justify-content: center;
-    align-items: center;
+    flex-direction: column; /* vertical no celular */
     gap: 10px;
-    flex-wrap: wrap; /* permite quebra de linha em telas pequenas */
     margin-bottom: 20px;
 }
 
 .search-bar input,
 .search-bar button {
-    padding: 10px 16px;
-    border-radius: 6px;
+    padding: 12px;
+    border-radius: 8px;
     border: none;
-    height: 42px;
-    font-size: 16px;
+    font-size: 18px;
+    width: 100%; /* ocupa a largura da tela */
 }
 
 .search-bar input {
     background-color: #1a1a1a;
     color: #fff;
     border: 1px solid #555;
-    flex: 1; /* ocupa espaço disponível */
-    min-width: 120px;
 }
 
 .search-bar button {
@@ -87,20 +83,20 @@ h1 {
     background-color: #cc3a3a;
 }
 
-/* Tabela de horários e resultados */
+/* Tabelas */
 .table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
-    overflow-x: auto;
     display: block;
+    overflow-x: auto; /* scroll horizontal no celular */
 }
 
 .table th, .table td {
     border: 1px solid #444;
     padding: 10px;
     text-align: center;
-    white-space: nowrap; /* evita quebra de palavras na tabela */
+    white-space: nowrap;
 }
 
 .table th {
@@ -115,38 +111,28 @@ h1 {
     background-color: #222;
 }
 
-/* Input geral */
+/* Inputs dentro de forms de marcação */
 input[type="text"] {
-    padding: 6px;
-    border-radius: 4px;
+    padding: 10px;
+    border-radius: 6px;
     border: 1px solid #555;
     background-color: #1a1a1a;
     color: #fff;
+    width: 100%;
+    margin-bottom: 10px;
 }
 
-/* Media queries para celular */
-@media (max-width: 600px) {
-    .card {
-        width: 100px;
-        height: 60px;
-        font-size: 16px;
-    }
+/* Botões dentro das tabelas */
+table button {
+    padding: 10px;
+    border-radius: 6px;
+    border: none;
+    background-color: #ff4d4d;
+    color: #fff;
+    cursor: pointer;
+    font-size: 16px;
+}
 
-    .search-bar input {
-        flex: 2;
-    }
-
-    .search-bar button {
-        flex: 1;
-        min-width: 80px;
-    }
-
-    h1 {
-        font-size: 24px;
-    }
-
-    .table th, .table td {
-        padding: 6px;
-        font-size: 14px;
-    }
+table button:hover {
+    background-color: #cc3a3a;
 }
