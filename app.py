@@ -134,6 +134,15 @@ def buscar_cliente(nome):
         conn.close()
 
 # ---------------- Rotas Flask ----------------
+@app.route("/init_db")
+def init_db():
+    try:
+        criar_tabela()
+        criar_agenda_padrao()
+        return "Banco inicializado com sucesso!"
+    except Exception as e:
+        return f"Erro ao inicializar banco: {e}"
+
 @app.route("/")
 def index():
     dias = ["Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado", "Domingo"]
